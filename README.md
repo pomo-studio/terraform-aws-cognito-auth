@@ -4,6 +4,7 @@ Terraform module for AWS Cognito User Pool + App Client auth patterns.
 
 - Email-first user pool with auto-verified email
 - App client configured for password + SRP + refresh flows
+- Optional Cognito Hosted UI domain + OAuth code flow wiring
 - Opinionated defaults for SSR/API server auth usage
 - Lambda-friendly output map (`lambda_env_vars`) for direct wiring
 
@@ -56,6 +57,23 @@ module "auth" {
 }
 ```
 
+### Hosted UI (OAuth code flow)
+
+```hcl
+module "auth" {
+  source  = "pomo-studio/cognito-auth/aws"
+  version = "~> 1.0"
+
+  name        = "txwatch-users"
+  client_name = "txwatch-app"
+
+  enable_hosted_ui   = true
+  domain_prefix      = "txwatch-137064409667"
+  oauth_callback_urls = ["https://txwatch.pomo.dev/api/auth/callback"]
+  oauth_logout_urls   = ["https://txwatch.pomo.dev/login"]
+}
+```
+
 ## Variables
 
 | Name | Type | Default | Description |
@@ -73,6 +91,11 @@ module "auth" {
 | `refresh_token_validity_days` | `number` | `30` | Refresh token validity in days |
 | `email_sending_account` | `string` | `"COGNITO_DEFAULT"` | Cognito email sending account setting |
 | `mfa_configuration` | `string` | `"OFF"` | MFA configuration: `OFF`, `ON`, or `OPTIONAL` |
+| `enable_hosted_ui` | `bool` | `false` | Enable Cognito Hosted UI with OAuth code flow |
+| `domain_prefix` | `string` | `null` | Hosted UI domain prefix (required when Hosted UI is enabled) |
+| `oauth_callback_urls` | `list(string)` | `[]` | OAuth callback URLs used by Hosted UI |
+| `oauth_logout_urls` | `list(string)` | `[]` | OAuth logout URLs used by Hosted UI |
+| `oauth_scopes` | `list(string)` | `["openid", "email", "profile"]` | OAuth scopes requested by Hosted UI |
 | `tags` | `map(string)` | `{}` | Tags applied to created resources |
 
 ## Outputs
@@ -84,12 +107,17 @@ module "auth" {
 | `client_id` | Cognito User Pool app client ID |
 | `region` | AWS region where the user pool is deployed |
 | `lambda_env_vars` | Environment variable map for SSR/API Lambdas |
+| `hosted_ui_enabled` | Whether Hosted UI support is enabled |
+| `hosted_ui_domain` | Hosted UI domain prefix |
+| `hosted_ui_signin_url` | Prebuilt Hosted UI sign-in URL |
+| `hosted_ui_signout_url` | Prebuilt Hosted UI sign-out URL |
 
 ## What it creates
 
 Per module call:
 - `aws_cognito_user_pool`
 - `aws_cognito_user_pool_client`
+- `aws_cognito_user_pool_domain` (when `enable_hosted_ui = true`)
 
 ## Design decisions
 

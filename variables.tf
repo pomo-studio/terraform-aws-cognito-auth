@@ -104,3 +104,33 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "enable_hosted_ui" {
+  description = "Enable Cognito Hosted UI OAuth flows"
+  type        = bool
+  default     = false
+}
+
+variable "domain_prefix" {
+  description = "Cognito Hosted UI domain prefix (required when enable_hosted_ui = true)"
+  type        = string
+  default     = null
+}
+
+variable "oauth_callback_urls" {
+  description = "OAuth callback URLs for Hosted UI"
+  type        = list(string)
+  default     = []
+}
+
+variable "oauth_logout_urls" {
+  description = "OAuth logout URLs for Hosted UI"
+  type        = list(string)
+  default     = []
+}
+
+variable "oauth_scopes" {
+  description = "OAuth scopes for Hosted UI"
+  type        = list(string)
+  default     = ["openid", "email", "profile"]
+}

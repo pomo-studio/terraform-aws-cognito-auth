@@ -3,6 +3,8 @@
 [![Terraform Validation](https://github.com/pomo-studio/terraform-aws-cognito-auth/actions/workflows/terraform.yml/badge.svg)](https://github.com/pomo-studio/terraform-aws-cognito-auth/actions/workflows/terraform.yml)
 [![Terraform Registry](https://img.shields.io/badge/terraform-registry-844FBA?logo=terraform)](https://registry.terraform.io/modules/pomo-studio/cognito-auth/aws)
 
+- [Changelog](CHANGELOG.md)
+
 Terraform module for AWS Cognito User Pool + App Client auth patterns.
 
 - Email-first user pool with auto-verified email

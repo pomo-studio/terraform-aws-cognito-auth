@@ -2,6 +2,12 @@
 
 All notable changes to this module are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
 
+## [1.1.3] - 2026-09-12
+
+### Added
+
+- terraform-docs-generated interface documentation in README (Requirements/Providers/Inputs/Outputs) with a CI drift check
+
 ## [1.1.2] - 2026-09-05
 
 ### Added
@@ -34,6 +40,7 @@ All notable changes to this module are documented here. The format follows [Keep
 - Unit test suite using `terraform test` with mock providers
 - Basic and complete examples
 
+[1.1.3]: https://github.com/pomo-studio/terraform-aws-cognito-auth/releases/tag/v1.1.3
 [1.1.2]: https://github.com/pomo-studio/terraform-aws-cognito-auth/releases/tag/v1.1.2
 [1.1.1]: https://github.com/pomo-studio/terraform-aws-cognito-auth/releases/tag/v1.1.1
 [1.0.0]: https://github.com/pomo-studio/terraform-aws-cognito-auth/releases/tag/v1.0.0

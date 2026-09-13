@@ -15,6 +15,12 @@ Terraform module for AWS Cognito User Pool + App Client auth patterns.
 
 **Registry**: `pomo-studio/cognito-auth/aws`
 
+## When to use it
+
+Use this component when an application needs its own sign-in. It creates an email-first user pool and an app client with password, SRP, and refresh flows enabled, and optionally the Cognito Hosted UI with OAuth.
+
+It is a focused component, not a full identity platform. It does not attempt cross-region identity replication, because Cognito's native replication is limited, so a recovery plan for user pools stays an application decision.
+
 ## Usage
 
 ### Basic
@@ -95,6 +101,11 @@ Per module call:
 
 **Primary-region only by design**: Cognito native multi-region replication is limited; DR strategy remains app-level and documented outside this module.
 
+## Examples
+
+- [Basic](examples/basic/): a user pool and app client with defaults.
+- [Complete](examples/complete/): password policy, MFA, and tags.
+
 ## Reference
 
 <details>
@@ -168,6 +179,10 @@ No modules.
 
 </details>
 
-## License
+## Support and license
 
-MIT
+Part of the [pomo-studio](https://github.com/pomo-studio) Terraform components, run in production by [postmodern.](https://pomo.studio). Regenerate the reference with `terraform-docs` v0.20.0 (`terraform-docs .`); CI fails on drift.
+
+See the [contribution guide](https://github.com/pomo-studio/.github/blob/main/CONTRIBUTING.md) and [security policy](https://github.com/pomo-studio/.github/blob/main/SECURITY.md).
+
+MIT licensed. See [LICENSE](LICENSE).

@@ -83,15 +83,15 @@ module "auth" {
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0, < 7.0 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.63.0 |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.64.0 |
 
 ## Modules
 
@@ -100,7 +100,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_cognito_user_pool.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool) | resource |
 | [aws_cognito_user_pool_client.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool_client) | resource |
 | [aws_cognito_user_pool_domain.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool_domain) | resource |
@@ -109,7 +109,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_access_token_validity_hours"></a> [access\_token\_validity\_hours](#input\_access\_token\_validity\_hours) | Access token validity in hours | `number` | `1` | no |
 | <a name="input_client_name"></a> [client\_name](#input\_client\_name) | Cognito User Pool app client name | `string` | `"app"` | no |
 | <a name="input_domain_prefix"></a> [domain\_prefix](#input\_domain\_prefix) | Cognito Hosted UI domain prefix (required when enable\_hosted\_ui = true) | `string` | `null` | no |
@@ -133,7 +133,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_client_id"></a> [client\_id](#output\_client\_id) | Cognito User Pool app client ID |
 | <a name="output_hosted_ui_domain"></a> [hosted\_ui\_domain](#output\_hosted\_ui\_domain) | Cognito Hosted UI domain prefix |
 | <a name="output_hosted_ui_enabled"></a> [hosted\_ui\_enabled](#output\_hosted\_ui\_enabled) | Whether Cognito Hosted UI is enabled |

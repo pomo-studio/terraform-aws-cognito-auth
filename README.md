@@ -79,6 +79,27 @@ module "auth" {
 }
 ```
 
+## What it creates
+
+Per module call:
+
+- `aws_cognito_user_pool`
+- `aws_cognito_user_pool_client`
+- `aws_cognito_user_pool_domain` (when `enable_hosted_ui = true`)
+
+## Design decisions
+
+**No app client secret by default**: this matches SSR/API Lambda auth patterns where server-side handlers call `InitiateAuth` without client-secret hashing complexity.
+
+**Email-first pool**: the module standardizes on required and auto-verified email to reduce per-app Cognito drift.
+
+**Primary-region only by design**: Cognito native multi-region replication is limited; DR strategy remains app-level and documented outside this module.
+
+## Reference
+
+<details>
+<summary>Reference</summary>
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -145,20 +166,7 @@ No modules.
 | <a name="output_user_pool_id"></a> [user\_pool\_id](#output\_user\_pool\_id) | Cognito User Pool ID |
 <!-- END_TF_DOCS -->
 
-## What it creates
-
-Per module call:
-- `aws_cognito_user_pool`
-- `aws_cognito_user_pool_client`
-- `aws_cognito_user_pool_domain` (when `enable_hosted_ui = true`)
-
-## Design decisions
-
-**No app client secret by default** — this matches SSR/API Lambda auth patterns where server-side handlers call `InitiateAuth` without client-secret hashing complexity.
-
-**Email-first pool** — the module standardizes on required and auto-verified email to reduce per-app Cognito drift.
-
-**Primary-region only by design** — Cognito native multi-region replication is limited; DR strategy remains app-level and documented outside this module.
+</details>
 
 ## License
 

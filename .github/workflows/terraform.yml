@@ -95,4 +95,6 @@ jobs:
           working-dir: .
           output-file: README.md
           output-method: inject
-          args: --check
+          # The gh-actions image does not accept --check; fail-on-diff enforces
+          # that README.md is up to date.
+          fail-on-diff: true
